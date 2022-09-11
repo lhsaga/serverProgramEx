@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Server Programming with Spring Boot</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>My friends</h1>
+	<table>
+		<tr th:each="studentList: ${student}">
+			<td
+				th:text="${studentList.firstname} + ' '+ ${studentList.lastname} "></td>
+		</tr>
+	</table>
+	<h1>Add more friends to the list</h1>
+
+	<form action="#" th:action="@{/index}" th:object="${student}"
+		method="post">
+		<table>
+			<tr>
+				<td>First name: <input type="text" th:field="*{firstname}" /></td>
+				<td th:if="${#fields.hasErrors('firstname')}"
+					th:errors="*{firstname}">Error</td>
+			</tr>
+			<tr>
+				<td>Last name: <input type="text" th:field="*{lastname}" /></td>
+				<td th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Error</td>
+			</tr>
+		</table>
+		<p>
+			<input type="submit" value="Submit" />
+		</p>
+
+	</form>
+</body>
+</html>
